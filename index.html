@@ -56,7 +56,7 @@
 			<!-- One -->
 				<section id="one" class="spotlight style1 bottom">
 					
-					<span class="image fit main"><img src="images/photoIndex.jpeg" alt="Image fit main" /></span>
+					<span class="image fit main"><img src="images/PhotoIndex.jpeg" alt="" /></span>
 					<div class="content">
 						<div class="container">
 							<div class="row">
@@ -194,13 +194,17 @@
 							<p>Indiquez ici vos coordonnées je vous contacterais prochainement </p>
 							<p><em>Projet PHP en cours 😵‍💫</em></p>
 						</header>
-						<form method="post" action="traitement.php" class="cta">
+						<form method="post" action="base_SQL.php">
+
 						<div class="row gtr-uniform gtr-50">
 								
 								<div class="col-8 col-12-xsmall"><input type="text" name="Prénom" id="Prénom" placeholder="Your name"/></div>
+
 								<div class="col-8 col-12-xsmall"><input type="text" name="nom" id="nom" placeholder="Your surname" /></div>
+
 								<div class="col-8 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Your Email Address" /></div>
-								<div class="col-8 col-12-xsmall"><input type="text" name="Phone Number" id="Phone Number" placeholder="06.00.00.00.00" /></div>
+
+								<div class="col-8 col-12-xsmall"><input type="number" name="Phone Number" id="Phone Number" placeholder="06.00.00.00.00" /></div>
 								
 								
 								<p>
@@ -210,6 +214,38 @@
 								<div class="col-4 col-12-xsmall"><input type="submit" value="Get Started" class="fit primary" /></div>
 							</div>
 						</form>
+						<form method="POST">
+							
+							<input type="email" name="email" required placeholder="email">
+				
+							
+							<input type="text" name="sujet" required placeholder="text">
+				
+							<textarea name="message" required></textarea>
+				
+							<input type="submit" value="Envoyer le message">
+				
+						</form>
+				
+						<?php
+						//Si le formulaire a été soumis 
+						if (isset($_POST["message"])) {
+							$message = "Ce message vous a été envoyé via la page contact du site webcresson.com
+							Nom : " . $_POST["nom"] ."
+							Email: " . $_POST["email"] ."
+							Message " . $_POST ["message"];
+				
+							$retour = mail("alexis@webcresson.com", $_POST["sujet"],
+							$message, "From:" . "\r\n" . "Reply-to:" . $_POST ["email"]);
+							if ($retour) {
+								echo "<p> l'email a bien été envoyé </p>";
+							}
+						}
+						?>
+				
+					</body>
+				
+					</html>
 					</div>
 				</section>
 
